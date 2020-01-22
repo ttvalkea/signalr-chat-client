@@ -16,7 +16,7 @@ private hubConnection: signalR.HubConnection
 
   public startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
-                            .withUrl('https://localhost:44342/chart')
+                            .withUrl('https://localhost:5001/chart')
                             .build();
 
     this.hubConnection

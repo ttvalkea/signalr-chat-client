@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
   }
 
   private startHttpRequest = () => {
-    this.http.get('https://localhost:44342/api/chart')
+    this.http.get('https://localhost:5001/api/chart')
       .subscribe(res => {
         console.log(res);
       })
