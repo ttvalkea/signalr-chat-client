@@ -7,7 +7,7 @@ import { ChartModel } from '../_interfaces/ChartModel'
 })
 export class SignalRService {
   //TODO: poista nämä 2
-  public data: ChartModel[];
+  // public data: ChartModel[];
   public broadcastedData: string;
 
   public chatMessages: string[] = [];
@@ -25,13 +25,13 @@ private hubConnection: signalR.HubConnection
       .catch(err => console.log('Error while starting connection: ' + err))
   }
 
-  public addTransferChartDataListener = () => {
-    this.hubConnection.on('transferchartdata', (data) => {
-      console.log('saatiin dataa')
-      this.data = data;
-      console.log(data);
-    });
-  }
+  // public addTransferChartDataListener = () => {
+  //   this.hubConnection.on('transferchartdata', (data) => {
+  //     console.log('saatiin dataa')
+  //     this.data = data;
+  //     console.log(data);
+  //   });
+  // }
 
   //TODO: poista
   public broadcastChartData = () => {
