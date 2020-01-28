@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
   }
 
   private startHttpRequest = () => {
-    this.http.get('https://localhost:5001/api/chart')
+    this.http.get('https://tuomas-signalr-chat-server.azurewebsites.net/api/chart') //https://localhost:5001/api/chart <- TODO: API environment conf
       .subscribe(res => {
         console.log(res);
       })

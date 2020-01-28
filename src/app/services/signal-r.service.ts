@@ -16,7 +16,7 @@ private hubConnection: signalR.HubConnection
 
   public startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
-                            .withUrl('https://localhost:5001/chart')
+                            .withUrl('https://tuomas-signalr-chat-server.azurewebsites.net/chart') //'https://localhost:5001/chart' <- TODO: API environment conf
                             .build();
 
     this.hubConnection
