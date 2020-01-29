@@ -1,9 +1,10 @@
-<input [(ngModel)]="userName" placeholder="Your name" />
+<input [(ngModel)]="userName" placeholder="Your name" class="user-name-input" />
 <br>
-<input [(ngModel)]="chatMessage" placeholder="A cool message" />
-<button (click)="sendMessage()" [disabled]="!userName || !chatMessage">Send</button>
+<input [(ngModel)]="chatMessage" placeholder="A cool message" class="message-input" />
+<button (click)="sendMessage()" [disabled]="!userName || !chatMessage" class="send-button">Send</button>
 <br>
 <strong>Chat:</strong>
 <p *ngFor="let message of signalRService.chatMessages">{{message}}</p>
-<p>--end of chat--</p>
-<p>Käyttäjiä: {{signalRService.connectionAmount}}</p>
+<p class="end-of-chat">--end of chat--</p>
+
+<span class="user-amount">Käyttäjiä: {{signalRService.connectionAmount}}</span>

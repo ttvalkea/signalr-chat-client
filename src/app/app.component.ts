@@ -33,7 +33,11 @@ export class AppComponent implements OnInit {
 
   //TODO: Parametriksi message, this pois
   public sendMessage = () => {
-    this.signalRService.broadcastChatMessage(this.userName + ': ' + this.chatMessage);
+    const currentdate = new Date();
+    const datetime = currentdate.getHours().toString().padStart(2, '0') + ":"
+                + currentdate.getMinutes().toString().padStart(2, '0') + ":"
+                + currentdate.getSeconds().toString().padStart(2, '0');
+    this.signalRService.broadcastChatMessage(this.userName + '('+datetime+'): ' + this.chatMessage);
     this.chatMessage = '';
   }
 }

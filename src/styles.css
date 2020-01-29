@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background-image: linear-gradient(to left, #fbf , #eef);
+}
+
+.send-button,
+input {
+  border-radius: 5px;
+  font-size: 150%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: 100;
+}
+
+.user-name-input,
+.message-input {
+  margin-bottom: 10px;
+}
+
+.user-amount {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.end-of-chat {
+  color: #999;
+}
