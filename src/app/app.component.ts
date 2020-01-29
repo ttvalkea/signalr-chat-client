@@ -11,6 +11,7 @@ import { environment } from './../environments/environment';
 export class AppComponent implements OnInit {
 
   public chatMessage: string = '';
+  public userName: string = '';
 
   constructor(public signalRService: SignalRService, private http: HttpClient) { }
 
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit {
 
   //TODO: Parametriksi message, this pois
   public sendMessage = () => {
-    this.signalRService.broadcastChatMessage(this.chatMessage);
+    this.signalRService.broadcastChatMessage(this.userName + ': ' + this.chatMessage);
+    this.chatMessage = '';
   }
 }
