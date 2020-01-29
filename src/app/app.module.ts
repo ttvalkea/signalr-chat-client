@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
@@ -13,7 +12,6 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    ChartsModule,
     HttpClientModule,
     FormsModule
   ],

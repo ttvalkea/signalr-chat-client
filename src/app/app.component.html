@@ -1,17 +1,7 @@
-<!-- <div style="display: block" *ngIf='signalRService.data'>
-  <canvas baseChart
-          [datasets]="signalRService.data"
-          [labels]="chartLabels"
-          [options]="chartOptions"
-          [legend]="chartLegend"
-          [chartType]="chartType"
-          [colors]="colors"
-          (chartClick)="chartClicked($event)"></canvas>
-</div>
-<br><br> -->
 <input [(ngModel)]="chatMessage" />
 <button (click)="sendMessage()">Send</button>
 <br>
 <strong>Chat:</strong>
 <p *ngFor="let message of signalRService.chatMessages">{{message}}</p>
 <p>--end of chat--</p>
+<p>Käyttäjiä: {{signalRService.connectionAmount}}</p>

@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
 import * as signalR from "@aspnet/signalr";
-// import { ChartModel } from '../_interfaces/ChartModel'
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignalRService {
-  //TODO: poista nämä 2
-  // public data: ChartModel[];
-  public broadcastedData: string;
 
   public chatMessages: string[] = [];
-
-private hubConnection: signalR.HubConnection
+  public connectionAmount: number = 0;
+  private hubConnection: signalR.HubConnection
 
   public startConnection = () => {
+    const isProductionEnvironment = environment.production;
+    const serverBaseUrl = isProductionEnvironment ? 'https://tuomas-signalr-chat-server.azurewebsites.net' : 'https://localhost:5001';
     this.hubConnection = new signalR.HubConnectionBuilder()
-                            .withUrl('https://tuomas-signalr-chat-server.azurewebsites.net/chart') //'https://localhost:5001/chart' <- TODO: API environment conf
+                            .withUrl(serverBaseUrl + '/chat')
                             .build();
 
     this.hubConnection
@@ -25,36 +24,30 @@ private hubConnection: signalR.HubConnection
       .catch(err => console.log('Error while starting connection: ' + err))
   }
 
-  // public addTransferChartDataListener = () => {
-  //   this.hubConnection.on('transferchartdata', (data) => {
-  //     console.log('saatiin dataa')
-  //     this.data = data;
-  //     console.log(data);
-  //   });
-  // }
-
-  //TODO: poista
-  public broadcastChartData = () => {
-    console.log('lähetetään juhuu ja klon aika')
-    this.hubConnection.invoke('broadcastchartdata', 'juhuu' + new Date())
-    .catch(err => console.error(err));
-  }
-
   public broadcastChatMessage = (message: string) => {
     console.log('lähetetään chat-viesti');
     console.log(message);
     //TODO: Vaihda event nimi
-    this.hubConnection.invoke('broadcastchartdata', message)
+    this.hubConnection.invoke('broadcastchatmessage', message)
     .catch(err => console.error(err));
   }
 
   //TODO: Vaihda nimi
-  public addBroadcastChartDataListener = () => {
+  public addBroadcastChatMessageListener = () => {
     console.log('vastaanotettiin data')
-    this.hubConnection.on('broadcastchartdata', (data) => {
+    this.hubConnection.on('broadcastchatmessage', (data) => {
       console.log('vastaanotettiin data')
       console.log(data)
       this.chatMessages.push(data);
+    })
+  }
+
+  public addBroadcastConnectionAmountDataListener = () => {
+    console.log('vastaanotettiin data')
+    this.hubConnection.on('broadcastconnectionamountdata', (data) => {
+      console.log('vastaanotettiin data')
+      console.log(data)
+      this.connectionAmount = data;
     })
   }
 }
